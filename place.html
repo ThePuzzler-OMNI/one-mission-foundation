@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place · One Mission Foundation</title>
+  <meta name="description" content="Circadian architecture — the dwelling as medium for light, rest, and continuity." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://onemissionfoundation.org/place.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0a0f14', parchment: '#e8e4d9', mark: '#0ea5e9',
+            hive: '#c4a35a', leaf: '#6b8f71', mist: '#8b9aab',
+          },
+          fontFamily: {
+            display: ['\"Cormorant Garamond\"', 'Georgia', 'serif'],
+            sans: ['\"DM Sans\"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #0a0f14; color: #e8e4d9; min-height: 100vh; }
+    .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .panel { background: rgba(14, 20, 26, 0.85); border: 1px solid rgba(196, 163, 90, 0.12); }
+    .rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(196, 163, 90, 0.35), transparent); }
+    a.gloss { color: #c4a35a; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(196, 163, 90, 0.4); }
+    a.gloss:hover { color: #e8e4d9; text-decoration-color: rgba(196, 163, 90, 0.8); }
+    .omf-nav-toggle { display: none; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid rgba(196,163,90,0.25); background: transparent; color: #e8e4d9; cursor: pointer; }
+    @media (max-width: 639px) { .omf-nav-toggle { display: inline-flex; } .omf-nav-desktop { display: none !important; } }
+    #omf-mobile-menu { display: none; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(10,15,20,0.98); }
+    #omf-mobile-menu.open { display: block; }
+    #omf-mobile-menu a { display: block; padding: 0.85rem 1.25rem; color: #8b9aab; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.95rem; }
+    #omf-mobile-menu a:hover { color: #e8e4d9; background: rgba(196,163,90,0.08); }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="border-b border-white/5 sticky top-0 z-40 bg-ink/85 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-5 py-4 flex items-center justify-between gap-3">
+      <a href="/" class="flex items-center gap-3 min-w-0">
+        <div class="w-8 h-8 rounded-full border border-leaf/40 flex items-center justify-center text-leaf text-xs font-semibold tracking-widest shrink-0">OMF</div>
+        <div class="min-w-0">
+          <div class="font-semibold tracking-tight text-parchment text-sm">One Mission Foundation</div>
+          <div class="text-[10px] text-mist/70 uppercase tracking-wider">Body · Place · Continuity</div>
+        </div>
+      </a>
+      <nav class="omf-nav-desktop flex flex-wrap justify-end gap-3 sm:gap-5 text-sm text-mist/75" aria-label="Primary">
+        <a href="posture.html" class="hover:text-parchment transition">Posture</a>
+        <a href="practices.html" class="hover:text-parchment transition">Practices</a>
+        <a href="place.html" class="text-leaf">Place</a>
+        <a href="refused.html" class="hover:text-parchment transition">Refused</a>
+        <a href="network.html" class="hover:text-parchment transition">Network</a>
+      </nav>
+      <button type="button" id="omf-nav-toggle" class="omf-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="omf-mobile-menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="omf-mobile-menu">
+      <a href="posture.html">Posture</a>
+      <a href="practices.html">Practices</a>
+      <a href="place.html">Place</a>
+      <a href="refused.html">Refused</a>
+      <a href="network.html">Network</a>
+    </div>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-5 pt-16 md:pt-20 pb-10">
+    <p class="text-leaf text-[11px] uppercase tracking-[0.3em] mb-4">Place</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight text-parchment leading-[1.1] max-w-3xl">
+      The dwelling as medium.
+    </h1>
+    <p class="mt-5 text-mist max-w-2xl leading-relaxed">
+      Circadian architecture is not a style of furniture. It is the craft of letting light, dark,
+      air, and quiet do honest work for the people who live there.
+    </p>
+    <div class="rule max-w-md my-8"></div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 pb-16 space-y-6">
+    <div class="panel rounded-2xl p-8 space-y-4 text-mist/90 leading-relaxed">
+      <h2 class="font-display text-2xl text-parchment font-semibold">Light</h2>
+      <p>
+        Morning light is a signal; evening brightness is a cost. Windows, lamps, and screens
+        are instruments. Arrange them so the day can rise and the night can land.
+      </p>
+    </div>
+    <div class="panel rounded-2xl p-8 space-y-4 text-mist/90 leading-relaxed">
+      <h2 class="font-display text-2xl text-parchment font-semibold">Dark and quiet</h2>
+      <p>
+        Sleep rooms deserve dark that is actual dark and quiet that is not a luxury item.
+        Where full control is impossible, improve the edge conditions you can touch.
+      </p>
+    </div>
+    <div class="panel rounded-2xl p-8 space-y-4 text-mist/90 leading-relaxed">
+      <h2 class="font-display text-2xl text-parchment font-semibold">Rooms with jobs</h2>
+      <p>
+        Give hard work, meals, and rest distinguishable spaces when you can.
+        Continuity fails when every room is every room at every hour.
+      </p>
+    </div>
+    <div class="panel rounded-2xl p-8 space-y-4 text-mist/90 leading-relaxed">
+      <h2 class="font-display text-2xl text-parchment font-semibold">Stewardship, not perfection</h2>
+      <p>
+        Place is tended, not finished. Renters, travelers, and full houses still have levers:
+        one better lamp, one quieter hour, one window that opens on purpose.
+      </p>
+      <p class="text-sm text-mist/70">
+        This is orientation for living spaces — not building-code advice or a real-estate product.
+      </p>
+    </div>
+
+    <p class="text-sm text-mist/70 max-w-2xl leading-relaxed">
+      Sister map: <a class="gloss" href="network.html">Network</a>.
+      Boundaries: <a class="gloss" href="refused.html">Refused</a>.
+    </p>
+  </section>
+
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-4xl mx-auto px-5 space-y-4 text-xs text-mist/45">
+      <div class="flex flex-col sm:flex-row justify-between gap-2">
+        <div>© <span id="y"></span> One Mission Foundation</div>
+        <div class="flex flex-wrap gap-4">
+          <a href="/" class="hover:text-mist">Home</a>
+          <a href="posture.html" class="hover:text-mist">Posture</a>
+          <a href="practices.html" class="hover:text-mist">Practices</a>
+          <a href="place.html" class="hover:text-mist">Place</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var btn = document.getElementById('omf-nav-toggle');
+      var menu = document.getElementById('omf-mobile-menu');
+      if (!btn || !menu) return;
+      function setOpen(o) { menu.classList.toggle('open', o); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+      btn.addEventListener('click', function (e) { e.preventDefault(); setOpen(!menu.classList.contains('open')); });
+      menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    })();
+  </script>
+</body>
+</html>
