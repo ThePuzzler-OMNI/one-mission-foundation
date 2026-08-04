@@ -1,6 +1,7 @@
 /**
  * One Mission Foundation — registry chrome (network chrome contract 2026-08-04).
- * Same structure as Exchange / Intek / IMI: mark · desktop nav · SVG hamburger · sister footer.
+ * Visibility uses explicit CSS (not Tailwind-only) so the hamburger always works
+ * after dynamic inject under Tailwind CDN.
  */
 (function () {
   if (window.__omfSiteChrome) return;
@@ -15,77 +16,95 @@
       .replace(/</g, '&lt;')
       .replace(/"/g, '&quot;');
   }
-  function accent(chrome) {
-    return chrome.accent === 'hive' ? 'hive' : 'apple';
-  }
+
   var HAMBURGER =
     '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
 
+  var CHROME_CSS =
+    'header[data-site-chrome="ready"]{border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:0;z-index:40;background:rgba(10,15,20,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}' +
+    '.net-bar{max-width:56rem;margin:0 auto;padding:0 1.25rem;height:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;}' +
+    '.net-brand{display:flex;align-items:center;gap:0.75rem;min-width:0;text-decoration:none;color:#e8e4d9;}' +
+    '.net-mark{width:2rem;height:2rem;border-radius:9999px;border:1px solid rgba(217,74,56,0.4);display:inline-flex;align-items:center;justify-content:center;color:#d94a38;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;flex-shrink:0;}' +
+    '.net-title{font-weight:600;font-size:0.875rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
+    '.net-sub{font-size:10px;color:rgba(139,154,171,0.75);text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
+    '.net-nav-desktop{display:none;flex-wrap:wrap;justify-content:flex-end;gap:1.15rem;font-size:0.875rem;}' +
+    '.net-nav-desktop a{color:rgba(139,154,171,0.85);text-decoration:none;}' +
+    '.net-nav-desktop a:hover{color:#e8e4d9;}' +
+    '.net-nav-toggle{display:inline-flex;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:9999px;border:1px solid rgba(217,74,56,0.35);background:transparent;color:#e8e4d9;cursor:pointer;padding:0;}' +
+    '.net-nav-toggle:hover{border-color:rgba(217,74,56,0.7);}' +
+    '#net-mobile-menu{display:none;border-top:1px solid rgba(255,255,255,0.05);background:rgba(10,15,20,0.98);}' +
+    '#net-mobile-menu.open{display:block;}' +
+    '#net-mobile-menu a{display:block;padding:0.85rem 1.25rem;color:#8b9aab;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.95rem;}' +
+    '#net-mobile-menu a:hover{color:#e8e4d9;background:rgba(217,74,56,0.08);}' +
+    'footer[data-site-chrome="ready"]{border-top:1px solid rgba(255,255,255,0.05);margin-top:3rem;}' +
+    '.net-foot{max-width:56rem;margin:0 auto;padding:2.5rem 1.25rem;font-size:0.875rem;color:rgba(139,154,171,0.75);}' +
+    '.net-foot a{color:inherit;}' +
+    '.net-foot a:hover{color:#e8e4d9;}' +
+    '.net-foot-row{display:flex;flex-direction:column;gap:0.75rem;}' +
+    '.net-foot-sisters{font-size:0.75rem;color:rgba(139,154,171,0.85);margin-top:1rem;}' +
+    '.net-foot-note{font-size:0.75rem;color:rgba(139,154,171,0.5);margin-top:0.75rem;}' +
+    '@media (min-width:768px){' +
+    '.net-nav-desktop{display:flex;}' +
+    '.net-nav-toggle{display:none !important;}' +
+    '#net-mobile-menu,#net-mobile-menu.open{display:none !important;}' +
+    '.net-foot-row{flex-direction:row;align-items:center;justify-content:space-between;}' +
+    '}';
+
+  function ensureCss() {
+    if (document.getElementById('net-chrome-css')) return;
+    var s = document.createElement('style');
+    s.id = 'net-chrome-css';
+    s.textContent = CHROME_CSS;
+    document.head.appendChild(s);
+  }
+
   function buildHeader(chrome) {
-    var a = accent(chrome);
     var desktop = (chrome.nav || [])
       .map(function (item) {
         return (
-          '<a href="' +
-          esc(item.href) +
-          '" class="text-sm text-mist/75 hover:text-parchment transition">' +
-          esc(item.label) +
-          '</a>'
+          '<a href="' + esc(item.href) + '">' + esc(item.label) + '</a>'
         );
       })
       .join('');
     var mobile = (chrome.nav || [])
       .map(function (item) {
         return (
-          '<a href="' +
-          esc(item.href) +
-          '" class="block px-5 py-3 text-sm text-mist border-b border-white/5 hover:text-parchment hover:bg-white/[0.03]">' +
-          esc(item.label) +
-          '</a>'
+          '<a href="' + esc(item.href) + '">' + esc(item.label) + '</a>'
         );
       })
       .join('');
     return (
-      '<div class="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between gap-3">' +
-      '<a href="' +
+      '<div class="net-bar">' +
+      '<a class="net-brand" href="' +
       esc(chrome.home_href || '/') +
-      '" class="flex items-center gap-3 min-w-0">' +
-      '<div class="w-8 h-8 rounded-full border border-' +
-      a +
-      '/40 flex items-center justify-center text-' +
-      a +
-      ' text-xs font-semibold tracking-widest shrink-0">' +
+      '">' +
+      '<span class="net-mark">' +
       esc(chrome.mark || 'OMF') +
-      '</div>' +
-      '<div class="min-w-0">' +
-      '<div class="font-semibold tracking-tight text-parchment text-sm truncate">' +
+      '</span>' +
+      '<span><div class="net-title">' +
       esc(chrome.brand_primary || 'One Mission Foundation') +
-      '</div>' +
-      '<div class="text-[10px] text-mist/70 uppercase tracking-wider truncate">' +
+      '</div><div class="net-sub">' +
       esc(chrome.brand_secondary || '') +
-      '</div></div></a>' +
-      '<nav class="hidden md:flex flex-wrap justify-end gap-4 lg:gap-5 text-sm" aria-label="Primary">' +
+      '</div></span></a>' +
+      '<nav class="net-nav-desktop" aria-label="Primary">' +
       desktop +
       '</nav>' +
-      '<button type="button" id="net-nav-toggle" class="md:hidden inline-flex w-10 h-10 items-center justify-center rounded-full border border-' +
-      a +
-      '/30 text-parchment bg-transparent cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="net-mobile-menu">' +
+      '<button type="button" id="net-nav-toggle" class="net-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="net-mobile-menu">' +
       HAMBURGER +
       '</button></div>' +
-      '<div id="net-mobile-menu" class="hidden md:hidden border-t border-white/5 bg-ink/95">' +
+      '<div id="net-mobile-menu" role="navigation" aria-label="Mobile">' +
       mobile +
       '</div>'
     );
   }
 
   function buildFooter(chrome) {
-    var a = accent(chrome);
     var sisters = (chrome.sister_links || [])
       .map(function (s) {
         return (
           '<a href="' +
           esc(s.href) +
-          '" class="hover:text-parchment" target="_blank" rel="noopener">' +
+          '" target="_blank" rel="noopener">' +
           esc(s.label) +
           '</a>'
         );
@@ -94,30 +113,24 @@
     var local = (chrome.nav || [])
       .slice(0, 5)
       .map(function (n) {
-        return (
-          '<a href="' +
-          esc(n.href) +
-          '" class="hover:text-mist">' +
-          esc(n.label) +
-          '</a>'
-        );
+        return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
       })
       .join(' · ');
     return (
-      '<div class="max-w-4xl mx-auto px-5 py-10 text-sm text-mist/70 space-y-4">' +
-      '<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">' +
+      '<div class="net-foot">' +
+      '<div class="net-foot-row">' +
       '<div>© <span id="y">' +
       year() +
       '</span> ' +
       esc(chrome.brand_primary || 'One Mission Foundation') +
-      '</div>' +
-      '<div class="flex flex-wrap gap-x-2 gap-y-1 text-xs">' +
+      ' · One Mission</div>' +
+      '<div style="font-size:0.75rem">' +
       local +
       '</div></div>' +
-      '<div class="text-xs text-mist/80">Sister network: ' +
+      '<div class="net-foot-sisters">Sister network: ' +
       sisters +
       '</div>' +
-      '<p class="text-xs text-mist/50">Posture surface · not medical advice. See Refused.</p>' +
+      '<p class="net-foot-note">Posture surface · not medical advice. See Refused.</p>' +
       '</div>'
     );
   }
@@ -127,13 +140,15 @@
     var menu = document.getElementById('net-mobile-menu');
     if (!btn || !menu) return;
     function setOpen(o) {
-      menu.classList.toggle('hidden', !o);
+      if (o) menu.classList.add('open');
+      else menu.classList.remove('open');
       btn.setAttribute('aria-expanded', o ? 'true' : 'false');
       btn.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
     }
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      setOpen(menu.classList.contains('hidden'));
+      e.stopPropagation();
+      setOpen(!menu.classList.contains('open'));
     });
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
@@ -143,12 +158,11 @@
   }
 
   function apply(reg) {
+    ensureCss();
     var chrome = reg.chrome || {};
     var headers = document.querySelectorAll('header');
     if (!headers.length) {
       var h = document.createElement('header');
-      h.className =
-        'border-b border-white/5 sticky top-0 z-40 bg-ink/85 backdrop-blur-md';
       h.setAttribute('data-site-chrome', 'ready');
       h.innerHTML = buildHeader(chrome);
       document.body.insertBefore(h, document.body.firstChild);
@@ -156,8 +170,6 @@
       headers.forEach(function (el, i) {
         if (el.getAttribute('data-site-chrome') === 'skip') return;
         if (i > 0) return;
-        el.className =
-          'border-b border-white/5 sticky top-0 z-40 bg-ink/85 backdrop-blur-md';
         el.setAttribute('data-site-chrome', 'ready');
         el.innerHTML = buildHeader(chrome);
       });
@@ -166,14 +178,12 @@
     var footers = document.querySelectorAll('footer');
     if (!footers.length) {
       var f = document.createElement('footer');
-      f.className = 'border-t border-white/5 mt-12';
       f.setAttribute('data-site-chrome', 'ready');
       f.innerHTML = buildFooter(chrome);
       document.body.appendChild(f);
     } else {
       footers.forEach(function (f) {
         if (f.getAttribute('data-site-chrome') === 'skip') return;
-        f.className = 'border-t border-white/5 mt-12';
         f.setAttribute('data-site-chrome', 'ready');
         f.innerHTML = buildFooter(chrome);
       });
@@ -182,6 +192,7 @@
 
   function boot() {
     if (document.documentElement.getAttribute('data-site-chrome') === 'skip') return;
+    // Remove broken leftover year scripts that run before #y exists
     fetch('site-registry.json', { credentials: 'same-origin' })
       .then(function (r) {
         if (!r.ok) throw new Error(String(r.status));
@@ -190,6 +201,28 @@
       .then(apply)
       .catch(function (e) {
         console.warn('[foundation site-chrome]', e);
+        // Fallback chrome so hamburger still exists if registry fails
+        apply({
+          chrome: {
+            mark: 'OMF',
+            home_href: '/',
+            brand_primary: 'One Mission Foundation',
+            brand_secondary: 'Body · Place · Continuity',
+            nav: [
+              { href: 'posture.html', label: 'Posture' },
+              { href: 'practices.html', label: 'Practices' },
+              { href: 'place.html', label: 'Place' },
+              { href: 'refused.html', label: 'Refused' },
+              { href: 'network.html', label: 'Network' },
+            ],
+            sister_links: [
+              { href: 'https://onemissionnetworkandinstitute.org/', label: 'One Mission' },
+              { href: 'https://intekspace.com/', label: 'Intek Space' },
+              { href: 'https://instituteofmatureimagination.org/', label: 'IMI' },
+              { href: 'https://omniexchange.org/', label: 'Exchange' },
+            ],
+          },
+        });
       });
   }
 
