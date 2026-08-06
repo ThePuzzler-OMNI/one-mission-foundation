@@ -7,10 +7,24 @@ Static public surface for body · place · circadian continuity under One Missio
 
 ## Stack
 
-- Static HTML + Tailwind CDN (same pattern as Intek Space / IMI)
+- Static HTML + Tailwind CDN (optional; layout/chrome **not** Tailwind-only)
 - Fonts: Cormorant Garamond (display) + DM Sans
-- Colors: ink / parchment / hive / leaf / mist (Intek family)
+- Colors: ink / warm parchment / **apple** red / cider / mist (apple-warm family — not hive gold primary)
 - Vercel (Framework: Other, no build)
+
+## Network template kit (Q-NET-ADOPT-F · 2026-08-05)
+
+Aligned to `product/docs/NETWORK_TEMPLATE_KIT_v1_2026-08-05.md`:
+
+| Rule | Foundation |
+|------|------------|
+| `--page-max: 56rem` | `css/page-layout.css` |
+| Explicit chrome CSS | `js/site-chrome.js` |
+| Desktop hamburger always on | yes |
+| Sisters omit self | registry + runtime filter |
+| Accent | apple `#d94a38` (not hive) |
+
+Smoke after deploy: https://onemissionfoundation.org/ · desktop hamburger · Escape closes menu · footer sisters = OM · Intek · IMI · Exchange (no Foundation self).
 
 ## Pages
 
