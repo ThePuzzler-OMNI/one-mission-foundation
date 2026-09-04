@@ -147,7 +147,7 @@
       '<div class="net-foot-sisters">Sister network: ' +
       (sisters || '—') +
       '</div>' +
-      '<p class="net-foot-note">Posture surface · not medical advice. See Refused. · kit ' +
+      '<p class="net-foot-note">Stewardship surface · not medical advice. See Refused. · kit ' +
       KIT +
       '</p>' +
       '</div>'
@@ -227,7 +227,7 @@
       mark: 'OMF',
       home_href: '/',
       brand_primary: 'One Mission Foundation',
-      brand_secondary: 'Body · Place · Continuity',
+      brand_secondary: 'Self-stewardship toward the Creator',
       accent: 'apple',
       nav: [
         { href: 'posture.html', label: 'Posture' },
