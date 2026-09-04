@@ -127,8 +127,14 @@ body {
 .p-6 {
   padding: 1.5rem;
 }
+.p-7 {
+  padding: 1.75rem;
+}
 .p-8 {
   padding: 2rem;
+}
+.items-baseline {
+  align-items: baseline;
 }
 .pt-4 {
   padding-top: 1rem;
@@ -184,8 +190,19 @@ body {
 .text-lg {
   font-size: 1.125rem;
 }
+.text-xl {
+  font-size: 1.25rem;
+}
 .text-2xl {
   font-size: 1.5rem;
+}
+.list-none {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.font-medium {
+  font-weight: 500;
 }
 .text-4xl {
   font-size: 2.25rem;
@@ -223,6 +240,9 @@ body {
 }
 .gap-4 {
   gap: 1rem;
+}
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
 }
 .space-y-4 > * + * {
   margin-top: 1rem;
@@ -276,6 +296,9 @@ body > section {
 }
 
 @media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .sm\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
