@@ -11,6 +11,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://onemissionfoundation.org/lenses.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://onemissionfoundation.org/practices.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

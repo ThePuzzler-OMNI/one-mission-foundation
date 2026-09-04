@@ -14,6 +14,7 @@
     "accent": "apple",
     "nav": [
       { "href": "posture.html", "label": "Posture" },
+      { "href": "lenses.html", "label": "Lenses" },
       { "href": "practices.html", "label": "Practices" },
       { "href": "place.html", "label": "Place" },
       { "href": "refused.html", "label": "Refused" },

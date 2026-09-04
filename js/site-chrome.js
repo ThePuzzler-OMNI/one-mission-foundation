@@ -128,7 +128,7 @@
       })
       .join(' · ');
     var local = (chrome.nav || [])
-      .slice(0, 5)
+      .slice(0, 6)
       .map(function (n) {
         return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
       })
@@ -231,6 +231,7 @@
       accent: 'apple',
       nav: [
         { href: 'posture.html', label: 'Posture' },
+        { href: 'lenses.html', label: 'Lenses' },
         { href: 'practices.html', label: 'Practices' },
         { href: 'place.html', label: 'Place' },
         { href: 'refused.html', label: 'Refused' },

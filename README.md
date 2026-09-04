@@ -30,8 +30,9 @@ Smoke after deploy: https://onemissionfoundation.org/ · desktop hamburger · Es
 
 | Path | Job |
 |------|-----|
-| `/` | Home — Creator-first purpose, four doors, optional companion note |
-| `/posture` | Why this surface exists · 1 / 3 / 5 / 13 lenses · faith center |
+| `/` | Home — Creator-first purpose, four doors, 7 + 11 beta note, optional companion |
+| `/posture` | Why this surface exists · 1 / 3 / 5 / 13 lenses · faith center · 7 + 11 beta pointer |
+| `/lenses` | Lenses · 7 + 11 (beta) — faith layer eleven + body-map seven; does not replace 1 · 3 · 5 · 13 |
 | `/practices` | Values lived in the flesh — sleep, light, substance limits, honesty |
 | `/place` | Dwelling as garden · circadian architecture without wellness fashion |
 | `/refused` | Permanent boundaries (clinic, fashion, ego, LLM dump, bot storefront) |
@@ -60,4 +61,4 @@ Forward `.com` · `.net` · `.info` · `.store` · `.shop` to `.org` when ready.
 
 ## Refused
 
-See `refused.html`. No medical claims. No HOG-proves-diet. No wellness fashion. No ego branding. No dumping private health into an LLM.
+See `refused.html`. No medical claims. No HOG-proves-diet. No wellness fashion. No ego branding. No dumping private health into an LLM. No chakra bots, commandment agents, or twelfth tablet. 7 + 11 does not replace 1 · 3 · 5 · 13.

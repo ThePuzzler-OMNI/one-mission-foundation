@@ -190,8 +190,19 @@ body {
 .text-lg {
   font-size: 1.125rem;
 }
+.text-xl {
+  font-size: 1.25rem;
+}
 .text-2xl {
   font-size: 1.5rem;
+}
+.list-none {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.font-medium {
+  font-weight: 500;
 }
 .text-4xl {
   font-size: 2.25rem;
@@ -229,6 +240,9 @@ body {
 }
 .gap-4 {
   gap: 1rem;
+}
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
 }
 .space-y-4 > * + * {
   margin-top: 1rem;
