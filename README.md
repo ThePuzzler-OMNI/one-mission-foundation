@@ -30,7 +30,7 @@ Smoke after deploy: https://onemissionfoundation.org/ · desktop hamburger · Es
 
 | Path | Job |
 |------|-----|
-| `/` | Home — Creator-first purpose, four doors, 7 + 11 beta note, optional companion |
+| `/` | Home — Creator / One-pinnacle, Mission, OMNI Grok-Bot seat, four doors, 7 + 11 beta |
 | `/posture` | Why this surface exists · 1 / 3 / 5 / 13 lenses · faith center · 7 + 11 beta pointer |
 | `/lenses` | Lenses · 7 + 11 (beta) — faith layer eleven + body-map seven; does not replace 1 · 3 · 5 · 13 |
 | `/practices` | Values lived in the flesh — sleep, light, substance limits, honesty |
