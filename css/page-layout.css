@@ -10,6 +10,10 @@
   --cider: #b85a42;
   --mist: #9a8f88;
   --leaf: #6b8f71;
+  /* Foundation Mirror door — virtue green, softer than the apple companion CTA */
+  --virtue: #6eaf7e;
+  --virtue-ink: #b7dfc2;
+  --virtue-glow: rgba(140, 206, 162, 0.55);
 
   /* Network template kit tokens */
   --page-max: 56rem;
@@ -320,6 +324,68 @@ a.panel:hover,
 }
 .companion-cta:focus-visible {
   box-shadow: 0 0 0 3px rgba(217, 74, 56, 0.28);
+}
+.companion-doors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+/* Soft Mirror door: ghost chip, quieter than .companion-cta */
+a.mirror-door {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(168, 214, 178, 0.72);
+  background: rgba(110, 175, 126, 0.14);
+  color: var(--virtue-ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(107, 143, 113, 0.35);
+  touch-action: manipulation;
+  transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+}
+a.mirror-door--bar {
+  padding: 0 0.7rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+a.mirror-door--seat {
+  min-height: 2.75rem;
+  background: rgba(110, 175, 126, 0.1);
+  font-weight: 500;
+}
+a.mirror-door:hover {
+  background: rgba(110, 175, 126, 0.24);
+  border-color: rgba(190, 230, 200, 0.9);
+  color: #e7f6ea;
+  box-shadow: 0 0 16px var(--virtue-glow);
+}
+a.mirror-door:focus {
+  outline: 2px solid #b7dcb8;
+  outline-offset: 3px;
+}
+a.mirror-door:focus-visible {
+  outline: 2px solid #b7dcb8;
+  outline-offset: 3px;
+  background: rgba(110, 175, 126, 0.24);
+  border-color: rgba(190, 230, 200, 0.9);
+  color: #e7f6ea;
+  box-shadow: 0 0 0 3px rgba(110, 175, 126, 0.35), 0 0 16px var(--virtue-glow);
 }
 .rule {
   height: 1px;

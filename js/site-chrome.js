@@ -67,6 +67,17 @@
     '.net-nav-desktop{display:flex;}' +
     '.net-nav-toggle{display:inline-flex !important;}' +
     '.net-foot-row{flex-direction:row;align-items:center;justify-content:space-between;}' +
+    '}' +
+    '.net-mirror-bar{display:none;}' +
+    '.net-foot-door{margin-top:0.9rem;}' +
+    '.net-foot a.mirror-door{color:#b7dfc2;text-decoration:none;}' +
+    '.net-foot a.mirror-door:hover,.net-foot a.mirror-door:focus{color:#e7f6ea;}' +
+    '#net-mobile-menu a.mirror-door--menu{display:flex;align-items:center;min-height:44px;color:#b7dfc2;background:rgba(110,175,126,0.14);border:0;border-bottom:1px solid rgba(168,214,178,0.35);border-radius:0;box-shadow:none;font-weight:500;}' +
+    '#net-mobile-menu a.mirror-door--menu:hover,#net-mobile-menu a.mirror-door--menu:focus{color:#e7f6ea;background:rgba(110,175,126,0.24);box-shadow:inset 0 0 16px rgba(140,206,162,0.35);}' +
+    '#net-mobile-menu a.mirror-door--menu:focus{outline:2px solid #b7dcb8;outline-offset:-2px;}' +
+    '@media (max-width:879px){' +
+    '.net-actions a.mirror-door--bar{display:none;}' +
+    '.net-mirror-bar{display:flex;justify-content:flex-end;padding:0.15rem var(--page-pad,1.25rem) 0.7rem;}' +
     '}';
 
   function ensureCss() {
@@ -76,6 +87,24 @@
     s.setAttribute('data-kit', KIT);
     s.textContent = CHROME_CSS;
     document.head.appendChild(s);
+  }
+
+  var MIRROR_HREF = 'https://omni-mindmap.vercel.app/mirror/soul-time/?door=foundation';
+  var MIRROR_ARIA = 'Open Mirror Soul-time (opens in new tab)';
+
+  function mirrorDoor(label, extraClass) {
+    var cls = 'mirror-door' + (extraClass ? ' ' + extraClass : '');
+    return (
+      '<a class="' +
+      cls +
+      '" href="' +
+      MIRROR_HREF +
+      '" target="_blank" rel="noopener" aria-label="' +
+      esc(MIRROR_ARIA) +
+      '">' +
+      esc(label) +
+      '</a>'
+    );
   }
 
   function buildHeader(chrome) {
@@ -106,10 +135,15 @@
       '<nav class="net-nav-desktop" aria-label="Primary">' +
       desktop +
       '</nav>' +
+      mirrorDoor('open Mirror', 'mirror-door--bar') +
       '<button type="button" id="net-nav-toggle" class="net-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="net-mobile-menu">' +
       HAMBURGER +
       '</button></div></div>' +
+      '<div class="net-mirror-bar">' +
+      mirrorDoor('Mirror · Soul-time', 'mirror-door--strip') +
+      '</div>' +
       '<div id="net-mobile-menu" role="navigation" aria-label="Mobile">' +
+      mirrorDoor('Mirror · Soul-time', 'mirror-door--menu') +
       mobile +
       '</div>'
     );
@@ -144,6 +178,9 @@
       '<div style="font-size:0.75rem">' +
       local +
       '</div></div>' +
+      '<div class="net-foot-door">' +
+      mirrorDoor('Mirror · Soul-time', 'mirror-door--foot') +
+      '</div>' +
       '<div class="net-foot-sisters">Sister network: ' +
       (sisters || '—') +
       '</div>' +
@@ -152,6 +189,19 @@
       '</p>' +
       '</div>'
     );
+  }
+
+  function mountCompanionDoors() {
+    var ctas = document.querySelectorAll('a.companion-cta');
+    for (var i = 0; i < ctas.length; i++) {
+      var cta = ctas[i];
+      if (!cta.parentNode || cta.parentNode.querySelector('a.mirror-door')) continue;
+      var group = document.createElement('div');
+      group.className = 'companion-doors';
+      cta.parentNode.insertBefore(group, cta);
+      group.appendChild(cta);
+      group.insertAdjacentHTML('beforeend', mirrorDoor('Mirror · Soul-time', 'mirror-door--seat'));
+    }
   }
 
   function bindMobile() {
@@ -207,6 +257,7 @@
       });
     }
     bindMobile();
+    mountCompanionDoors();
     var footers = document.querySelectorAll('footer');
     if (!footers.length) {
       var f = document.createElement('footer');
