@@ -89,7 +89,7 @@
     document.head.appendChild(s);
   }
 
-  var MIRROR_HREF = 'https://omni-mindmap.vercel.app/mirror/soul-time/?door=foundation';
+  var MIRROR_HREF = 'https://intekspace.com/forge/mirror?door=foundation';
   var MIRROR_ARIA = 'Open Mirror Soul-time (opens in new tab)';
 
   function mirrorDoor(label, extraClass) {
