@@ -18,7 +18,8 @@
       { "href": "practices.html", "label": "Practices" },
       { "href": "place.html", "label": "Place" },
       { "href": "refused.html", "label": "Refused" },
-      { "href": "network.html", "label": "Network" }
+      { "href": "network.html", "label": "Network" },
+      { "href": "https://onemissionnetworkandinstitute.org/join", "label": "Join", "external": true }
     ],
     "sister_links": [
       { "href": "https://onemissionnetworkandinstitute.org/", "label": "One Mission" },
