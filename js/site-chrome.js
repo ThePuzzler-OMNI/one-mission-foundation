@@ -35,6 +35,70 @@
     });
   }
 
+  var KINGDOM_LINKS = [
+    { href: 'https://onemissionnetworkandinstitute.org', label: 'One Mission Network' },
+    { href: 'https://intekspace.com', label: 'Intek' },
+    { href: 'https://www.instituteofmatureimagination.org', label: 'Institute of Mature Imagination' },
+    { href: 'https://onemissionfoundation.org', label: 'One Mission Foundation', home: true },
+    { href: 'https://omniexchange.org', label: 'OMNI Exchange' },
+    { href: 'https://getomni.vercel.app', label: 'Get OMNI' },
+    { href: 'https://x.com/omni_puzzler', label: 'X @omni_puzzler', me: true },
+  ];
+
+  function isKingdomHome(item) {
+    if (item && item.home) return true;
+    return /onemissionfoundation\.org/i.test(String((item && item.href) || ''));
+  }
+
+  function isKingdomMe(item) {
+    if (item && item.me) return true;
+    return /x\.com\/omni_puzzler|twitter\.com\/omni_puzzler/i.test(String((item && item.href) || ''));
+  }
+
+  function isHomePath() {
+    var path = String(location.pathname || '/');
+    var file = path.split('/').pop();
+    return file === '' || file === 'index.html';
+  }
+
+  function resolveKingdomLinks(chrome) {
+    var list = chrome && chrome.kingdom_links;
+    var clean = [];
+    if (list && list.length) {
+      for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        if (item && item.href && item.label) clean.push(item);
+      }
+    }
+    if (clean.length >= KINGDOM_LINKS.length) return clean;
+    return KINGDOM_LINKS;
+  }
+
+  function buildKingdomBar(links) {
+    var items = (links || [])
+      .map(function (item) {
+        if (!item || !item.href || !item.label) return '';
+        var home = isKingdomHome(item);
+        var rel = [];
+        if (isKingdomMe(item)) rel.push('me');
+        if (!home) rel.push('noopener', 'noreferrer');
+        var attrs = ' class="kingdom-link" href="' + esc(item.href) + '"';
+        if (!home) attrs += ' target="_blank"';
+        if (rel.length) attrs += ' rel="' + rel.join(' ') + '"';
+        if (home && isHomePath()) attrs += ' aria-current="page"';
+        var hint = home ? '' : '<span class="visually-hidden"> (opens in a new tab)</span>';
+        return '<li><a' + attrs + '>' + esc(item.label) + hint + '</a></li>';
+      })
+      .join('');
+    return (
+      '<nav class="kingdom-bar" data-kingdom-bar aria-label="Kingdom">' +
+      '<p class="kingdom-bar-label" aria-hidden="true">Kingdom</p>' +
+      '<ul class="kingdom-bar-links">' +
+      items +
+      '</ul></nav>'
+    );
+  }
+
   var HAMBURGER =
     '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
 
@@ -169,6 +233,7 @@
       .join(' · ');
     return (
       '<div class="net-foot">' +
+      buildKingdomBar(resolveKingdomLinks(chrome)) +
       '<div class="net-foot-row">' +
       '<div>© <span id="y">' +
       year() +
@@ -294,6 +359,7 @@
         { href: 'https://instituteofmatureimagination.org/', label: 'IMI' },
         { href: 'https://omniexchange.org/', label: 'Exchange' },
       ],
+      kingdom_links: KINGDOM_LINKS,
     },
   };
 
